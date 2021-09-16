@@ -13,7 +13,7 @@ Currently on JavaScript projects with `package.json` are supported.
 To install Makedist:
 
 ```sh
-npm install -g makedist
+npm install -g @halqor/makedist
 ```
 
 # Usage
