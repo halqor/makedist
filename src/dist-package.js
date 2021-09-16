@@ -4,23 +4,14 @@ Creates a copy of package.json for distribution.
 import fs from 'fs';
 import path from 'path';
 
-function rewrite(pkg, out) {
+function rewrite(pkg, packageInfo = [], out) {
     const distpkg = {};
-
-    ['name', 'version', 'license', 'homepage', 'author', 'contributors', 'type', 'main', 'bin', 'dependencies', 'engines'].forEach((item) => {
+  
+    packageInfo.forEach((item) => {
         if (pkg[item]) {
             distpkg[item] = pkg[item];
         }
     });
-
-    if (pkg.scripts) {
-        distpkg.scripts = {};
-        ['start'].forEach((item) => {
-            if (pkg.scripts[item]) {
-                distpkg.scripts[item] = pkg.scripts[item];
-            }
-        });
-    }
 
     const output = JSON.stringify(distpkg, null, 2);
 
