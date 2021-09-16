@@ -55,6 +55,7 @@ async function main() {
             default: false,
             global: true,
         })
+        .version(false) // necessary so we can implement our own --version option, instead of yargs built-in
         .option('version', {
             describe: 'display version',
             type: 'boolean',
@@ -65,7 +66,7 @@ async function main() {
         .strict();
 
     verbose = argv.verbose;
-    
+
     if (argv.version) {
         const thisFilePath = fileURLToPath(import.meta.url);
         const targetPath = path.resolve(path.dirname(thisFilePath), '..'); // find package.json relative to this file's directory
@@ -158,6 +159,5 @@ async function main() {
         process.exit(1);
     }
 }
-
 
 main();
